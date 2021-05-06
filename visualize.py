@@ -39,11 +39,11 @@ def plot(genotype, filename):
 
 
 if __name__ == '__main__':
-  # if len(sys.argv) != 2:
-  #   print("usage:\n python {} ARCH_NAME".format(sys.argv[0]))
-  #   sys.exit(1)
+  if len(sys.argv) != 2:
+    print("usage:\n python {} ARCH_NAME".format(sys.argv[0]))
+    sys.exit(1)
 
-  genotype_name = "Genotype(normal=[('avg_pool_3x3', 0), ('avg_pool_3x3', 1), ('avg_pool_3x3', 0), ('sep_conv_5x5', 2), ('sep_conv_3x3', 3), ('dil_conv_5x5', 2), ('dil_conv_3x3', 0), ('sep_conv_3x3', 2)], normal_concat=range(2, 6), reduce=[('max_pool_3x3', 1), ('dil_conv_3x3', 0), ('max_pool_3x3', 1), ('max_pool_3x3', 0), ('sep_conv_3x3', 1), ('sep_conv_3x3', 2), ('sep_conv_3x3', 1), ('sep_conv_3x3', 4)], reduce_concat=range(2, 6))"
+  genotype_name = sys.argv[1]
   try:
     genotype = eval('genotypes.{}'.format(genotype_name))
   except AttributeError:
@@ -52,4 +52,3 @@ if __name__ == '__main__':
 
   plot(genotype.normal, "normal")
   plot(genotype.reduce, "reduction")
-

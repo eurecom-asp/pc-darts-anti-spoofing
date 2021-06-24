@@ -56,12 +56,12 @@ if __name__ == '__main__':
 
     if args.eval == 'e':
         eval_protocol = 'ASVspoof2019.LA.cm.eval.trl.txt'
-        eval_dataset = ASVRawTest(Path(args.data), 'eval', eval_protocol, is_test=True)
+        eval_dataset = ASVRawTest(Path(args.data), 'eval', eval_protocol)
     elif args.eval == 'd':
         print('*'*50)
         print('using dev protocol...')
         eval_protocol = 'ASVspoof2019.LA.cm.dev.trl.txt'
-        eval_dataset = ASVRawTest(Path(args.data), 'dev', eval_protocol, is_test=True)
+        eval_dataset = ASVRawTest(Path(args.data), 'dev', eval_protocol)
         print('*'*50)
 
 

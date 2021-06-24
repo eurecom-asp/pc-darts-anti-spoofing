@@ -157,6 +157,12 @@ if __name__ == '__main__':
             dev_acc, dev_loss = validate(dev_loader, model, criterion, epoch, writer_dict, validate_type='dev')
             logging.info('dev_loss %f', dev_loss)
             logging.info('dev_acc %f', dev_acc)
+            if dev_acc > best_acc:
+                print('*'*50)
+                logging.info('best acc model found')
+                print('*'*50)
+        
+        best_acc = max(dev_acc, best_acc)
 
         torch.save(model.state_dict(), os.path.join(model_save_path, 'epoch_{}.pth'.format(epoch)))
         scheduler.step()

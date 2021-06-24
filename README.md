@@ -51,7 +51,7 @@ If you use this repository, please consider citing:
 @inproceedings{ge2021,
   author= {Ge, Wanying and Panariello, Michele and Patino, Jose and Todisco, Massimiliano and Evans, Nicholas},
   title= {{Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection}},
-  booktitle={Interspeech 2021, 22nd Annual Conference of the International Speech Communication Association}},
+  booktitle={{Interspeech 2021, 22nd Annual Conference of the International Speech Communication Association}},
   year= {2021},
   month= {August},
   address = {Brno, Czech Republic}

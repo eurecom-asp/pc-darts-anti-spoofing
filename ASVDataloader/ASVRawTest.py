@@ -4,11 +4,10 @@ import librosa
 
 
 class ASVRawTest(data.Dataset):
-    def __init__(self, root, partition, protocol_name, is_test=False):
+    def __init__(self, root, partition, protocol_name):
         super(ASVRawTest, self).__init__()
         self.root = root
         self.partition = partition
-        self.is_test = is_test
 
         self.sysid_dict = {
             'bonafide': 1, 

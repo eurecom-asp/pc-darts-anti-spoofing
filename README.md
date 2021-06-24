@@ -1,6 +1,6 @@
 # pc-darts-anti-spoofing
 
-This repository contains implementation of our paper [Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection](https://arxiv.org/abs/2104.03123) submitted to INTERSPEECH 2021.
+This repository contains implementation of our paper [Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection](https://arxiv.org/abs/2104.03123) accepted to INTERSPEECH 2021.
 
 ### Dependencies
 ```
@@ -18,8 +18,8 @@ The extracted data should be orginased as:
    * ASVspoof2019.LA.cm.dev.trl.txt
    * ASVspoof2019.LA.cm.eval.trl.txt
    * ASVspoof2019.LA.cm.train.trn.txt
-   * ASVspoof2019.LA.cm.train.trn_h.txt
-   * ASVspoof2019.LA.cm.train.trn_t.txt
+   * ASVspoof2019.LA.cm.train.trn_h.txt (uploaded in /split_protocols)
+   * ASVspoof2019.LA.cm.train.trn_t.txt (uploaded in /split_protocols)
    * ...
 
 
@@ -43,5 +43,17 @@ To evaluate the saved model using the same architecture in train from scratch on
 python evaluate.py --arch=ARCH --model=/path/to/your/saved/models/epoch_x.pth --layers=4 --init_channels=16 --frontend=lfcc
 ```
 also replace `ARCH` with the corresponding architecture.
+#### Citation
+If you use this repository, please consider citing:
+
+(to be appear)
+```
+@inproceedings{ge2021,
+  author={Ge, Wanying and Panariello, Michele and Patino, Jose and Todisco, Massimiliano and Evans, Nicholas},
+  title={{Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection}},
+  year={2021},
+  booktitle={Interspeech 2021},
+}
+```
 #### Acknowledgement
 Codes are based on the implementations of [AutoSpeech](https://github.com/VITA-Group/AutoSpeech), [PC-DARTS](https://github.com/yuhuixu1993/PC-DARTS) and [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts).

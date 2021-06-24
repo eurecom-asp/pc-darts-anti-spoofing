@@ -4,7 +4,6 @@ import time
 import glob
 import numpy as np
 import torch
-import utils
 import logging
 import argparse
 import torch.nn as nn
@@ -12,17 +11,18 @@ import torch.utils
 from tensorboardX import SummaryWriter
 import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
-from ASVRawDataset import ASVRawDataset
-from model import Network
-from architect import Architect
 from pathlib import Path
-from functions import train_from_scratch, validate
-from utils import Genotype
+from ASVDataloader.ASVRawDataset import ASVRawDataset
+from models.model import Network
+from func.architect import Architect
+from func.functions import train_from_scratch, validate
+from utils import utils
+from utils.utils import Genotype
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('ASVSpoof2019 model')
     parser.add_argument('--data', type=str, default='/path/to/your/LA', 
-                    help='location of the data corpus')          
+                    help='location of the data')                           
     parser.add_argument('--valid_freq', type=int, default=1, help='validate frequency')
     parser.add_argument('--report_freq', type=int, default=1000, help='report frequency in training')
     parser.add_argument('--layers', type=int, default=4)
@@ -82,17 +82,16 @@ if __name__ == '__main__':
     elif args.frontend == 'lfb':
         front_end = 'LFB'
         logging.info('-----Using LFB frontend-----')
-    else:
-        print('*************No frontend selected*********************')
 
     OUTPUT_CLASSES = 2
-    cudnn.benchmark = False
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.enabled = True
-    torch.cuda.manual_seed_all(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
+    if args.seed:
+        cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.enabled = True
+        torch.cuda.manual_seed_all(args.seed)
+        np.random.seed(args.seed)
+        torch.manual_seed(args.seed)
+        torch.cuda.manual_seed(args.seed)
 
     logging.info("args = %s", args)
     

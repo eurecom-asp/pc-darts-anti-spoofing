@@ -4,17 +4,16 @@ import os
 from pathlib import Path
 import torch
 import torch.backends.cudnn as cudnn
-from model import Network
-# from functions import evaluate
-from functions import evaluate
-from ASVRawTest import ASVRawTest
-from utils import Genotype
+from models.model import Network
+from func.functions import evaluate
+from ASVDataloader.ASVRawTest import ASVRawTest
+from utils.utils import Genotype
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('ASVSpoof2019 model')
     parser.add_argument('--data', type=str, default='/path/to/your/LA', 
-                    help='location of the data corpus')   
+                    help='location of the data')   
     parser.add_argument('--model', type=str, default='/path/to/your/saved/models/epoch_x.pth')
     parser.add_argument('--layers', type=int, default=8)
     parser.add_argument('--init_channels', type=int, default=128)
@@ -32,8 +31,8 @@ if __name__ == '__main__':
     parser.add_argument('--frontend', type=str, help='select frontend')
     parser.add_argument('--sr', type=int, default=16000, help='default sampling rate')
     parser.add_argument('--arch', type=str, help='the searched architecture')
-    parser.add_argument('--comment', type=str)
-    parser.add_argument('--eval', type=str, default='e', help='to use eval or dev')
+    parser.add_argument('--comment', type=str, default='exp')
+    parser.add_argument('--eval', type=str, default='e', help='to use e-eval or d-dev partition')
 
     parser.set_defaults(is_log=True)
     parser.set_defaults(is_mask=False)
@@ -50,8 +49,6 @@ if __name__ == '__main__':
         front_end = 'LFCC'
     elif args.frontend == 'lfb':
         front_end = 'LFB'
-    else:
-        print('*************No frontend selected*********************')
 
 
     model = Network(args.init_channels, args.layers, args, OUTPUT_CLASSES, genotype, front_end)

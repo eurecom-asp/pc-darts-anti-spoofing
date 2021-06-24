@@ -1,7 +1,7 @@
 prettytable==2.0.0
 librosa==0.8.0
-torch==1.7.1
-torchaudio==0.7.0a0+a853dff
+torch==1.7.0
+torchaudio==0.7.0
 numpy==1.19.2
 torchvision==0.8.2
 graphviz==0.16

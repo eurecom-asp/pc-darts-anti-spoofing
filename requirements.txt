@@ -1,0 +1,11 @@
+prettytable==2.0.0
+librosa==0.8.0
+torch==1.7.0
+torchaudio==0.7.0
+numpy==1.19.2
+torchvision==0.8.2
+graphviz==0.16
+tqdm==4.56.0
+ipdb==0.13.7
+scikit_learn==0.24.2
+tensorboardX==2.2

@@ -46,16 +46,17 @@ also replace `ARCH` with the corresponding architecture.
 #### Citation
 If you use this repository, please consider citing:
 
-(to appear)
 ```
-@inproceedings{ge2021,
-  author= {Ge, Wanying and Panariello, Michele and Patino, Jose and Todisco, Massimiliano and Evans, Nicholas},
-  title= {{Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection}},
-  booktitle={{Interspeech 2021, 22nd Annual Conference of the International Speech Communication Association}},
-  year= {2021},
-  month= {August},
-  address = {Brno, Czech Republic}
+@inproceedings{ge21c_interspeech,
+  author={Wanying Ge and Michele Panariello and Jose Patino and Massimiliano Todisco and Nicholas Evans},
+  title={{Partially-Connected Differentiable Architecture Search for Deepfake and Spoofing Detection}},
+  year=2021,
+  booktitle={Proc. Interspeech 2021},
+  pages={4319--4323},
+  doi={10.21437/Interspeech.2021-1187}
 }
 ```
 #### Acknowledgement
+It is supported by the ExTENSoR project funded by the French Agence Nationale de la Recherche (ANR).
+
 Codes are based on the implementations of [AutoSpeech](https://github.com/VITA-Group/AutoSpeech), [PC-DARTS](https://github.com/yuhuixu1993/PC-DARTS) and [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts).

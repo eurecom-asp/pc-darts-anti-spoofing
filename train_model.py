@@ -21,12 +21,11 @@ from utils.utils import Genotype
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('ASVSpoof2019 model')
-    parser.add_argument('--data', type=str, default='/path/to/your/LA', 
-                    help='location of the data')                           
+    parser.add_argument('--data', type=str, default='/path/to/your/LA', help='location of the data')                           
     parser.add_argument('--valid_freq', type=int, default=1, help='validate frequency')
     parser.add_argument('--report_freq', type=int, default=1000, help='report frequency in training')
-    parser.add_argument('--layers', type=int, default=4)
-    parser.add_argument('--init_channels', type=int, default=16)
+    parser.add_argument('--layers', type=int, default=4, help='number of cells of the network')
+    parser.add_argument('--init_channels', type=int, default=16, help='number of the initial channels of the network')
     parser.add_argument('--arch', type=str, help='the searched architecture')
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--num_epochs', type=int, default=100)
@@ -40,10 +39,10 @@ if __name__ == '__main__':
     parser.add_argument('--no-mask', dest='is_mask', action='store_false', help='whether use freq mask')
     parser.add_argument('--cmvn', dest='is_cmvn', action='store_true', help='whether zero-mean std')
     parser.add_argument('--no-cmvn', dest='is_cmvn', action='store_false', help='whether zero-mean std')
-    parser.add_argument('--frontend', type=str, help='select frontend')
+    parser.add_argument('--frontend', type=str, help='select frontend, it can be either spec, lfb or lfcc')
     parser.add_argument('--sr', type=int, default=16000, help='default sampling rate')
-    parser.add_argument('--lr', type=float, default=1e-3)
-    parser.add_argument('--lr_min', type=float, default=1e-4)
+    parser.add_argument('--lr', type=float, default=1e-3, help='intial learning rate')
+    parser.add_argument('--lr_min', type=float, default=1e-4, help='mininum learning rate')
     parser.add_argument('--weight_decay', type=float, default=3e-4)
     parser.add_argument('--seed', type=int, default=None, help='random seed')
     parser.add_argument('--comment', type=str, default='EXP', help='Comment to describe the saved mdoel')
@@ -64,7 +63,8 @@ if __name__ == '__main__':
     fh = logging.FileHandler(os.path.join(args.comment, 'log.txt'))
     fh.setFormatter(logging.Formatter(log_format))
     logging.getLogger().addHandler(fh)
-
+    
+    # models will be saved under this path
     model_save_path = os.path.join(args.comment, 'models')
     if not os.path.exists(model_save_path):
         os.mkdir(model_save_path)
@@ -84,6 +84,8 @@ if __name__ == '__main__':
         logging.info('-----Using LFB frontend-----')
 
     OUTPUT_CLASSES = 2
+    
+    # set random seed
     if args.seed:
         cudnn.benchmark = False
         torch.backends.cudnn.deterministic = True
@@ -100,7 +102,9 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss(weight=weight)
     criterion = criterion.cuda()
 
+    # get the network architecture
     genotype = eval(args.arch)
+    # initialise the model
     model = Network(args.init_channels, args.layers, args, OUTPUT_CLASSES, genotype, front_end)
     model = model.to(device)
     # logging.info("param size = %fMB", utils.count_parameters_in_MB(model))

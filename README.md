@@ -57,6 +57,6 @@ If you use this repository, please consider citing:
 }
 ```
 #### Acknowledgement
-It is supported by the ExTENSoR project funded by the French Agence Nationale de la Recherche (ANR).
+This work is supported by the ExTENSoR project funded by the French Agence Nationale de la Recherche (ANR).
 
 Codes are based on the implementations of [AutoSpeech](https://github.com/VITA-Group/AutoSpeech), [PC-DARTS](https://github.com/yuhuixu1993/PC-DARTS) and [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts).

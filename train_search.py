@@ -25,11 +25,11 @@ if __name__ == '__main__':
                     help='location of the data')
     parser.add_argument('--valid_freq', type=int, default=1, help='validate frequency')
     parser.add_argument('--report_freq', type=int, default=1000, help='report frequency in training')
-    parser.add_argument('--layers', type=int, default=4)
-    parser.add_argument('--init_channels', type=int, default=16)
+    parser.add_argument('--layers', type=int, default=4, help='number of cells of the network')
+    parser.add_argument('--init_channels', type=int, default=16, help='number of the initial channels of the network')
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--num_epochs', type=int, default=50)
-    parser.add_argument('--warm_up_epoch', type=int, default=10)
+    parser.add_argument('--warm_up_epoch', type=int, default=10, help='the network architecture will not change until this epoch')
     parser.add_argument('--nfft', type=int, default=1024, help='number of FFT point')
     parser.add_argument('--hop', type=int, default=4, help='number of hop size (nfft//hop)')
     parser.add_argument('--nfilter', type=int, default=70, help='number of linear filter')
@@ -40,10 +40,10 @@ if __name__ == '__main__':
     parser.add_argument('--no-mask', dest='is_mask', action='store_false', help='whether use freq mask')
     parser.add_argument('--cmvn', dest='is_cmvn', action='store_true', help='whether zero-mean std')
     parser.add_argument('--no-cmvn', dest='is_cmvn', action='store_false', help='whether zero-mean std')
-    parser.add_argument('--frontend', type=str, help='select frontend')
+    parser.add_argument('--frontend', type=str, help='select frontend, it can be either spec, lfb or lfcc')
     parser.add_argument('--sr', type=int, default=16000, help='default sampling rate')
-    parser.add_argument('--lr', type=float, default=1e-2)
-    parser.add_argument('--lr_min', type=float, default=1e-3)
+    parser.add_argument('--lr', type=float, default=1e-2, help='intial learning rate')
+    parser.add_argument('--lr_min', type=float, default=1e-3, help='mininum learning rate')
     parser.add_argument('--weight_decay', type=float, default=3e-4)
     parser.add_argument('--seed', type=int, default=None, help='random seed')
     parser.add_argument('--comment', type=str, default='EXP', help='Comment to describe the saved mdoel')
@@ -81,6 +81,8 @@ if __name__ == '__main__':
         logging.info('-----Using LFB frontend-----')
 
     OUTPUT_CLASSES = 2
+    
+    # set random seed
     if args.seed:
         cudnn.benchmark = False
         torch.backends.cudnn.deterministic = True

@@ -20,7 +20,6 @@ The extracted data should be orginased as:
    * ASVspoof2019.LA.cm.train.trn.txt
    * ASVspoof2019.LA.cm.train.trn_h.txt (uploaded in /split_protocols)
    * ASVspoof2019.LA.cm.train.trn_t.txt (uploaded in /split_protocols)
-   * ASVspoof2019.LA.cm.eval.trl.txt (provided in the database)
    * ...
 
 
